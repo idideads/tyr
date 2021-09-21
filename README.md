@@ -38,25 +38,5 @@ docker push ${registry}/[your_acr_namespace]/nginx:1.21.3-alpine
 # then check your acr personal instance, should found a nginx image in your namespace
 ```
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
+## 推送成功后的结果
+![容器镜像服务实例列表](./picture/容器镜像仓库.png)
