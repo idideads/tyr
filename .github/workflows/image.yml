@@ -31,4 +31,4 @@ jobs:
       - name: RUN sh
         # uses: .
         run: sh ./image.sh
-        # shell: bash
+        shell: bash
