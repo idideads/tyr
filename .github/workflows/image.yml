@@ -23,10 +23,10 @@ jobs:
       # - name: Login to ACR
       #   uses: aliyun/acr-login@v1
       #   with: 
-      #     login-server: ${{ secrets.ALIREPO }}
+      #     login-server: ${{ secrets.ACR_SERVER }}
       #     # region-id: us-west-1
-      #     username: ${{ secrets.ALUSERNAME }}
-      #     password: ${{ secrets.ALISECRET }}
+      #     username: ${{ secrets.ACR_USER }}
+      #     password: ${{ secrets.ACR_PASSW }}
 
       - name: RUN sh
         run: ./image.sh
