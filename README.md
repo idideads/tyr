@@ -11,6 +11,7 @@
 ![容器镜像服务实例列表](./picture/容器镜像命名空间.png)
 
 
+
 ## ACR快速测试
 ```sh
 registry="registry.cn-hongkong.aliyuncs.com" #your_acr_registry
