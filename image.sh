@@ -1,6 +1,12 @@
 #!/bin/bash
-gcr_registry="k8s.gcr.io"                           #source_registry
-ali_registry="registry.cn-hongkong.aliyuncs.com"    #target_registry
+
+#source_registry
+gcr_registry="k8s.gcr.io"
+
+#target_registry
+# ali_region_id="cn-hongkong"
+ali_region_id="cn-shenzhen"
+ali_registry="registry.${ali_region_id}.aliyuncs.com"
 ali_namespace="tyr";
 
 images=(
@@ -10,7 +16,7 @@ images=(
     kube-proxy:v1.22.2
     pause:3.5
     etcd:3.5.0-0
-    # coredns/coredns:v1.8.4
+    # coredns/coredns:v1.8.4    # aliyun container registry does`t support second directory
 )
 
 for imageName in ${images[@]} ; do
@@ -27,6 +33,8 @@ for imageName in ${images[@]} ; do
     docker push ${ali_registry}/${ali_namespace}/${imageName}
 done
 
+# aliyun container registry does`t support second directory,
+# so here we just tag it to the first directory
 docker pull ${gcr_registry}/coredns/coredns:v1.8.4
 docker tag ${gcr_registry}/coredns/coredns:v1.8.4 ${ali_registry}/${ali_namespace}/coredns:v1.8.4
 docker push ${ali_registry}/${ali_namespace}/coredns:v1.8.4
