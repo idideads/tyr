@@ -30,3 +30,4 @@ jobs:
 
       - name: RUN sh
         run: ./image.sh
+        shell: bash
