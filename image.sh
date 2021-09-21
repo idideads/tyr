@@ -1,7 +1,8 @@
 #!/bin/bash
 gcr_registry="k8s.gcr.io"                           #source_registry
 ali_registry="registry.cn-hongkong.aliyuncs.com"    #target_registry
-ali_namespace="tyr"
+ali_namespace="tyr";
+
 images=(
     kube-apiserver:v1.22.2
     kube-controller-manager:v1.22.2
@@ -11,6 +12,7 @@ images=(
     etcd:3.5.0-0
     coredns/coredns:v1.8.4
 )
+
 for imageName in ${images[@]} ; do
     docker pull ${gcr_registry}/$imageName
     if [ $imageName = "coredns/coredns:v1.8.4" ]
