@@ -29,5 +29,6 @@ jobs:
       #     password: ${{ secrets.ACR_PASSW }}
 
       - name: RUN sh
+        uses: .
         run: ./image.sh
         shell: bash
