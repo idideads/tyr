@@ -908,6 +908,54 @@ kubectl delete pod 【用自己查出来的kube-proxy-dw5sf kube-proxy-hsrwp kub
 ![1619265568111](assets/1619265568111.png)
 
 
+- 7、修改证书有效期
+```sh
+  ##查看源码
+  kubelet --version
+
+  ##下载对应版本
+  git clone -b v1.21.0 https://github.com.cnpmjs.org/kubernetes/kubernetes.git
+
+  ##进入目录修改对应源码
+  cd kubernetes
+  vim staging/src/k8s.io/client-go/util/cert/cert.go
+  ##NotAfter:   now.Add(duration365d * 100).UTC()  // 10—>100 修改 CA 有效期为 100年（默认为 10年）
+  vim cmd/kubeadm/app/constants/constants.go
+  ##CertificateValidity = time.Hour * 24 * 365 * 100  // 加上 * 100  修改证书有效期为 100年（默认为 1年）
+
+  ##下载golang： https://golang.google.cn/dl/
+  wget https://golang.google.cn/dl/go1.17.1.linux-amd64.tar.gz
+  ##解压
+  tar -zxvf go1.17.1.linux-amd64.tar.gz -C /usr/local
+
+  ##环境变量
+  export GO111MODULE=on
+  export GOPROXY=https://goproxy.cn
+  export GOPATH=/usr/local/go/gopath
+  export GOROOT=/usr/local/go
+  export PATH=$PATH:$GOROOT/bin
+
+  ##编译kubeadm
+  make all WHAT=cmd/kubeadm GOFLAGS=-v
+
+  ##备份原kubeadm
+  mv /usr/bin/kubeadm /usr/bin/kubeadm.backup
+
+  ##替换新
+  cp ~/kubernetes/_output/local/bin/linux/amd64/kubeadm /usr/bin/kubeadm
+  chmod +x /usr/bin/kubeadm
+
+  ##验证
+  kubeadm version
+
+  ##查看原证书
+  kubeadm certs check-expiration
+
+  ##更新证书有效期
+  kubeadm certs renew all
+
+```
+
 
 # 三、Kubernetes基础入门
 
