@@ -12,6 +12,7 @@ ali_registry="registry.${ali_region_id}.aliyuncs.com"
 ali_namespace="tyr";
 
 images=(
+    # kubeadm config images list
     kube-apiserver:v1.22.2
     kube-controller-manager:v1.22.2
     kube-scheduler:v1.22.2
