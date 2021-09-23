@@ -4,9 +4,10 @@
 gcr_registry="k8s.gcr.io"
 
 #target_registry
-ali_region_id="cn-hongkong"
+# ali_region_id="cn-hongkong"
 # ali_region_id="cn-shenzhen"
 # ali_region_id="us-west-1"
+ali_region_id="cn-guangzhou"
 ali_registry="registry.${ali_region_id}.aliyuncs.com"
 ali_namespace="tyr";
 
