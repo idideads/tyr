@@ -20,6 +20,7 @@ images=(
     pause:3.5
     etcd:3.5.0-0
     # coredns/coredns:v1.8.4    # aliyun container registry does`t support second directory
+    echoserver:1.4
 )
 
 for imageName in ${images[@]} ; do
